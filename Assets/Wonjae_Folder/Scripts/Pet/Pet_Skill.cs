@@ -24,7 +24,7 @@ public class Pet_Skill : MonoBehaviour
     public void Unlock()
     {
         sprite.color = Color.white;
-        countText.color = Color.white;
+        countText.color = Color.white; 
     }
 
 }
