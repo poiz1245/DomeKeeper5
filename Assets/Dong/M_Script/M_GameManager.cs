@@ -16,6 +16,8 @@ public class M_GameManager : MonoBehaviour
     public GameObject shifter;
     public GameObject bolter;
 
+    public Transform domeCenter;
+
     string mBeast = "Beast";
     string mDriller = "Driller";
     string mDiver = "Diver";
@@ -46,7 +48,7 @@ public class M_GameManager : MonoBehaviour
 
         waveTime = 10 + wave * 5;
         waveTimer = waveTime;
-        spawnDuration = 6;
+        spawnDuration = 4;
 
     }
 
@@ -64,16 +66,6 @@ public class M_GameManager : MonoBehaviour
         if (spawnMonster)
         {
             
-
-
-            Make(mBolter);
-            Make(mDriller);
-            Make(mDiver);
-            Make(mTicker);
-            Make(mWorm);
-            Make(mShifter);
-            Make(mBeast);
-            Make(mFlyer);
 
             x += Time.deltaTime;
 
@@ -108,7 +100,7 @@ public class M_GameManager : MonoBehaviour
         if (waveTimer <= 0)
         {
             spawnMonster = true;
-            spawnDuration = 6;
+            spawnDuration = 4;
         }
 
         if(spawnMonster)
@@ -127,7 +119,6 @@ public class M_GameManager : MonoBehaviour
             
             spawnMonster = false;
             wave++;
-
             waveTime = 10 + wave * 5;
             if (waveTime > 60)
             {
@@ -136,10 +127,11 @@ public class M_GameManager : MonoBehaviour
 
             waveTimer = waveTime;
             waveSpawnTime = 0;
+            x = 0;
         }
         else if ( waveSpawnTime < waveTime / 2)
         {
-            spawnDuration = 12;
+//            spawnDuration = 12;
         }
 
         #endregion
@@ -165,49 +157,49 @@ public class M_GameManager : MonoBehaviour
         switch (name)
         {
             case "Beast":
-                pos = new Vector2(25 * toggle, Random.Range(-7f, -9f));
+                pos = new Vector2(25 * toggle, Random.Range(-7f + domeCenter.position.x, -9f + (domeCenter.position.y+9.6f))); ;
                 Instantiate(beast, pos, Quaternion.identity);
                 break;
 
             case "Bolter":
-                pos = new Vector2(25 * toggle, Random.Range(-2f, 3f));
+                pos = new Vector2(25 * toggle, Random.Range(-2f + domeCenter.position.x, 3f + (domeCenter.position.y + 9.6f)));
                 Instantiate(bolter, pos, Quaternion.identity);
                 break;
 
             case "Diver":
-                diverX = Random.Range(0f, 40f);
+                diverX = Random.Range(0f + domeCenter.position.x, 40f + (domeCenter.position.y + 9.6f));
                 if (diverX < 15f) pos = new Vector2(27 * toggle, diverX);
                 else pos = new Vector2((diverX - 15) * toggle, 15);
                 Instantiate(diver, pos, Quaternion.identity);
                 break;
 
             case "Driller":
-                pos = new Vector2(25 * toggle, Random.Range(-7f, -8f));
+                pos = new Vector2(25 * toggle, Random.Range(-7f + domeCenter.position.x, -8f + (domeCenter.position.y + 9.6f)));
                 Instantiate(driller, pos, Quaternion.identity);
                 break;
 
             case "Flyer":
-                diverX = Random.Range(0f, 40f);
+                diverX = Random.Range(0f + domeCenter.position.x, 40f + (domeCenter.position.y + 9.6f));
                 if (diverX < 15f) pos = new Vector2(27 * toggle, diverX);
                 else pos = new Vector2((diverX - 15) * toggle, 15);
                 Instantiate(flyer, pos, Quaternion.identity);
                 break;
 
             case "Shifter":
-                pos = new Vector2(25 * toggle, Random.Range(-7f, -8f));
+                pos = new Vector2(25 * toggle, Random.Range(-7f + domeCenter.position.x, -8f + (domeCenter.position.y + 9.6f)));
                 Instantiate(shifter, pos, Quaternion.identity);
                 break;
 
             case "Ticker":
-                for (int i = 0; i < Random.Range(11, 26); i++)
+                for (int i = 0; i < Random.Range(11 , 26); i++)
                 {
-                    pos = new Vector2( Random.Range(25f,28f) * toggle, Random.Range(-8f, -10f));
+                    pos = new Vector2( Random.Range(25f + domeCenter.position.x, 28f + (domeCenter.position.y + 9.6f)) * toggle, Random.Range(-8f + domeCenter.position.x, -10f + (domeCenter.position.y + 9.6f)));
                     Instantiate(ticker, pos, Quaternion.identity);
                 }
                 break;
 
             case "Worm":
-                pos = new Vector2(Random.Range(10f, 18f) * toggle, Random.Range(-7f, -8f));
+                pos = new Vector2(Random.Range(10f + domeCenter.position.x, 18f + (domeCenter.position.y+ 9.6f)) * toggle, Random.Range(-7f + domeCenter.position.x, -8f + (domeCenter.position.y + 9.6f)));
                 Instantiate(worm, pos, Quaternion.identity);
                 break;
 

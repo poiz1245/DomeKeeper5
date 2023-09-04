@@ -28,7 +28,7 @@ public class M_DiverAttack : M_State
         base.Update();
         diver.gameObject.GetComponent<CircleCollider2D>().enabled = false;
         diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
+        diver.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = true;
 
 
         if (diver.transform.position != null)

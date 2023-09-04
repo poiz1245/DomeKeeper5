@@ -5437,6 +5437,7 @@ MonoBehaviour:
   worm: {fileID: 1806603920478596895, guid: 66cb8615176cb1149a3d69b09afbe05c, type: 3}
   shifter: {fileID: 2943596597679754805, guid: 322c7307d5b8f554d97dad3ce8386339, type: 3}
   bolter: {fileID: 633645560670332834, guid: 3cfab5464c312bd4395987aa31e047cc, type: 3}
+  domeCenter: {fileID: 1147517486}
   x: 0
   waveTime: 0
   waveTimer: 0

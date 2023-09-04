@@ -28,6 +28,6 @@ public class M_DiverAttackSuccess : M_State
 
         diver.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         diver.gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-        diver.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        diver.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = false;
     }
 }
