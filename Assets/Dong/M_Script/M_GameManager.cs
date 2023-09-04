@@ -1,7 +1,4 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class M_GameManager : MonoBehaviour
 {
@@ -26,46 +23,20 @@ public class M_GameManager : MonoBehaviour
     string mFlyer = "Flyer";
 
     public float x = 0;
-    int y;
-
-    public float waveTime;
-    public float waveTimer;
-    public int wave = 1;
-    public float waveSpawnTime;
-    public float spawnDuration; 
-        
-
-    public bool spawnMonster = false;
-
-    public Slider slider;
 
     private void Start()
     {
         int monsterCount = CountWithTag(monsterTag);
         Debug.Log(" 몬스터 숫자 : " + monsterCount);
-
-        waveTime = 10 + wave * 5;
-        waveTimer = waveTime;
-        spawnDuration = 6;
-
+        
     }
 
     private void Update()
     {
-        slider.value = waveTimer / waveTime;
-        y = wave;
-        if( wave > 6)
+        x += Time.deltaTime;
+
+        if(x > 2)
         {
-            y = 6;
-        }
-
-        #region 몬스터 스폰시스템
-
-        if (spawnMonster)
-        {
-            
-
-
             Make(mBolter);
             Make(mDriller);
             Make(mDiver);
@@ -75,79 +46,13 @@ public class M_GameManager : MonoBehaviour
             Make(mBeast);
             Make(mFlyer);
 
-            x += Time.deltaTime;
+            x = 0;
 
-            if (x > spawnDuration)
-            {
-                Make(mBolter);
-                Make(mDriller);
-                Make(mDiver);
-                Make(mTicker);
-                Make(mWorm);
-                Make(mShifter);
-                Make(mBeast);
-                Make(mFlyer);
 
-                x = 0;
-
-                int monsterCount = CountWithTag(monsterTag);
-                Debug.Log(" 몬스터 숫자 : " + monsterCount);
-            }
-
+            int monsterCount = CountWithTag(monsterTag);
+            //Debug.Log(" 몬스터 숫자 : " + monsterCount);
         }
-
-        #endregion
-
-        #region 타이머
-
-        if (waveTimer > 0)
-        {
-            waveTimer -= Time.deltaTime;
-        }
-
-        if (waveTimer <= 0)
-        {
-            spawnMonster = true;
-            spawnDuration = 6;
-        }
-
-        if(spawnMonster)
-        {
-            waveSpawnTime += Time.deltaTime;
-        }
-        // 슬라이더 = wavetimer / wavetime
-
-        #endregion
-
-        #region 웨이브 시스템
-
-        if( waveTimer <0 && waveSpawnTime > waveTime/2 && CountWithTag(monsterTag) == 0) // 웨이브 지속시간 끝, 몬스터 전부 처리, 타이머 0일떄
-        {
-            // 웨이브 끝남
-            
-            spawnMonster = false;
-            wave++;
-
-            waveTime = 10 + wave * 5;
-            if (waveTime > 60)
-            {
-                waveTime = 60;
-            }
-
-            waveTimer = waveTime;
-            waveSpawnTime = 0;
-        }
-        else if ( waveSpawnTime < waveTime / 2)
-        {
-            spawnDuration = 12;
-        }
-
-        #endregion
     }
-
-
-
-
 
     private int CountWithTag(string tag)
     {

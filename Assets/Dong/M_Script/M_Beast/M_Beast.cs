@@ -23,8 +23,6 @@ public class M_Beast : M_Moving
     public float howlX { get; private set; }
     public float JumpX { get; private set; }
 
-    public float currnetHP;
-
 
     protected override void Awake()
     {
@@ -48,7 +46,6 @@ public class M_Beast : M_Moving
     {
         base.Start();
         stateMachine.Initiate(move);
-        currnetHP = HP1;
     }
 
     protected override void Update()
