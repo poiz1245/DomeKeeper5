@@ -41,32 +41,30 @@ public class M_Diver : M_Moving
 
         pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
 
-        while (pos.x > 23 || pos.y > 22.6f)
+        while (pos.x > 22.5f || pos.y > 18.1f)
         {
 
-            if (pos.x > 23)
+            if (pos.x > 22.5f)
             {
-                pos.y = pos.y * 23 / pos.x;
-                pos.x = 23;
+                pos.y = pos.y * 22.5f / pos.x;
+                pos.x = 22.5f;
             }
 
-            if (pos.y > 22.6f) // pos = getdir+9.6
+            if (pos.y > 18.1f) // pos = getdir+9.6
             {
-                pos.x = (22.6f * pos.x) / pos.y;
-                pos.y = 22.6f;
+                pos.x = (18.1f * pos.x) / pos.y;
+                pos.y = 18.1f;
             }
         }
-
 
         pos.x *= faceX;
         if (transform.position.x < 0)
         {
             pos.x = -pos.x;
         }
+        pos.y -= 8.6f;
+        pos.x += 0.5f;
 
-
-
-        pos.y -= 9.6f;
 
         Vector2 dir = Getdir();
         angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
@@ -133,29 +131,56 @@ public class M_Diver : M_Moving
         if (!destroyed)
         {
 
-
             Vector2 pos = Getdir();
 
             pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
 
-            while (pos.x > 23 || pos.y > 22.6f)
+            while (pos.x > 22.5f || pos.y > 18.1f)
             {
 
-                if (pos.x > 23)
+                if (pos.x > 22.5f)
                 {
-                    pos.y = pos.y * 23 / pos.x;
-                    pos.x = 23;
+                    pos.y = pos.y * 22.5f / pos.x;
+                    pos.x = 22.5f;
                 }
 
-                if (pos.y > 22.6f) // pos = getdir+9.6
+                if (pos.y > 18.1f) // pos = getdir+9.6
                 {
-                    pos.x = (22.6f * pos.x) / pos.y;
-                    pos.y = 22.6f;
+                    pos.x = (18.1f * pos.x) / pos.y;
+                    pos.y = 18.1f;
                 }
             }
 
-            pos.x *= -faceX;
-            pos.y -= 9.6f;
+            if (transform.position.x < 0)
+            {
+                pos.x = -pos.x;
+            }
+            pos.y -= 8.6f;
+            pos.x += 0.5f;
+
+
+            /*            Vector2 pos = Getdir();
+
+                        pos = new Vector2(Mathf.Abs(pos.x), Mathf.Abs(pos.y));
+
+                        while (pos.x > 23 || pos.y > 22.6f)
+                        {
+
+                            if (pos.x > 23)
+                            {
+                                pos.y = pos.y * 23 / pos.x;
+                                pos.x = 23;
+                            }
+
+                            if (pos.y > 22.6f) // pos = getdir+9.6
+                            {
+                                pos.x = (22.6f * pos.x) / pos.y;
+                                pos.y = 22.6f;
+                            }
+                        }
+
+                        pos.x *= -faceX;
+                        pos.y -= 9.6f;*/
 
             Vector2 dir = Getdir();
             angle = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;

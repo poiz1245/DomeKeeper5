@@ -50,6 +50,9 @@ public class M_GameManager : MonoBehaviour
         waveTimer = waveTime;
         spawnDuration = 4;
 
+
+        Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
+
     }
 
     private void Update()
@@ -71,14 +74,14 @@ public class M_GameManager : MonoBehaviour
 
             if (x > spawnDuration)
             {
-                Make(mBolter);
+/*                Make(mBolter);
                 Make(mDriller);
                 Make(mDiver);
                 Make(mTicker);
                 Make(mWorm);
                 Make(mShifter);
                 Make(mBeast);
-                Make(mFlyer);
+                Make(mFlyer);*/
 
                 x = 0;
 
