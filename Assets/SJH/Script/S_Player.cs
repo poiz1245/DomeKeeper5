@@ -9,6 +9,7 @@ public class S_Player : MonoBehaviour
     [SerializeField] float jumpForce = 5f;
     [SerializeField] GameObject player;
     [SerializeField] GameObject drill;
+    [SerializeField] GameObject light;
 
     SpriteRenderer spriteRender;
     Rigidbody2D rigid;
@@ -34,6 +35,10 @@ public class S_Player : MonoBehaviour
         float xInput = Input.GetAxis("Horizontal");
         float yInput = Input.GetAxis("Vertical");
 
+        if (Input.GetKey(KeyCode.X))
+        {
+            Instantiate(light, transform.position, Quaternion.identity);
+        }
 
         if (Input.GetKey(KeyCode.Space))
         {

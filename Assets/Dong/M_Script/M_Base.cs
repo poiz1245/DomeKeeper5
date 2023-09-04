@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class M_Base : MonoBehaviour
@@ -9,8 +10,13 @@ public class M_Base : MonoBehaviour
 
     protected bool destroyed = false;
 
+    public float idleTimer;
+    public float currentHP;
+
     [Header("Stat")]
-    public float HP = 1;
+    public float HP;
+    public float HP1 = 10;
+    public float HP2 = 0;
     public float Atk = 1;
 
     public int faceX { get; private set; }
@@ -26,16 +32,21 @@ public class M_Base : MonoBehaviour
         zero = new Vector2(0, 0);
         faceX = 1;
         facingRight = true;
+
+        HP = HP1 + HP2;
     }
 
     protected virtual void Start()
     {
-
+        idleTimer = 0;
+        currentHP = HP1;
     }
 
     protected virtual void Update()
     {
         stateMachine.currentState.Update();
+
+        HP = HP1 + HP2;
 
         if (transform.position.x > domeCenter.position.x && facingRight)
         {
@@ -51,18 +62,38 @@ public class M_Base : MonoBehaviour
         if (facingRight) faceX = 1;
         else faceX = -1;
 
+        #region hit상태 구현
+
+        if ( currentHP != HP1)
+        {
+            currentHP = HP1;
+            idleTimer = 0;
+            Debug.Log("hit");
+        }
+
+        if (idleTimer >= 1)
+        {
+            //
+        }
+
+        idleTimer += Time.deltaTime;
+
+        #endregion
+
+
 
         if (HP <= 0)
         {
             Dead();
         }
 
+
     }
     public void Damage(float Atk)
     {
-        if (HP > 0)
+        if (HP1 > 0)
         {
-            HP -= Atk;
+            HP1 -= Atk;
         }
     }
     protected virtual void Dead()

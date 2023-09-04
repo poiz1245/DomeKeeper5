@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WJ_PlayerMoveState : WJ_PlayerState
+public class WJ_PlayerMoveState : WJ_PlayerGroundState
 {
     public WJ_PlayerMoveState(WJ_Player _player, WJ_PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -17,11 +17,11 @@ public class WJ_PlayerMoveState : WJ_PlayerState
     {
         base.Update();
 
-        player.SetVelocity(player.xInput * player.Speed, rbody.velocity.y);
+        player.SetVelocity(xInput * player.Speed, rbody.velocity.y);
 
-        if (player.xInput == 0)
+        if (xInput == 0)
         {
-            stateMachine.ChangeState(player.idleState);
+            player.stateMachine.ChangeState(player.idleState);
         }
 
     }

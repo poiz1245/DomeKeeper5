@@ -76,15 +76,15 @@ public class S_JemStone : MonoBehaviour
 
             if (color == jemColor.red)
             {
-                collision.transform.GetComponent<S_Player>().redjemScore++;
+                collision.transform.GetComponent<WJ_Player>().redjemScore++;
             }
             if (color == jemColor.green)
             {
-                collision.transform.GetComponent<S_Player>().greenjemScore++;
+                collision.transform.GetComponent<WJ_Player>().greenjemScore++;
             }
             if (color == jemColor.blue)
             {
-                collision.transform.GetComponent<S_Player>().bluejemScore++;
+                collision.transform.GetComponent<WJ_Player>().bluejemScore++;
             }
         }
         else if (collision.gameObject.CompareTag("Pet"))
