@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Stun : MonoBehaviour
 {
-    [SerializeField] float Atk;
-    [SerializeField] float Speed;
+    [SerializeField] public float Atk;
+    [SerializeField] public float Speed;
     private void Start()
     {
         

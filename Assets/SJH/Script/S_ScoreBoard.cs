@@ -5,7 +5,6 @@ using UnityEngine;
 public class S_ScoreBoard : MonoBehaviour
 {
     [SerializeField] GameObject scoreBoard;
-    [SerializeField] GameObject map;
     float count =5;
     void Update()
     {
@@ -20,15 +19,6 @@ public class S_ScoreBoard : MonoBehaviour
         if (count <= 0)
         {
             scoreBoard.SetActive(false);
-        }
-
-        if(Input.GetKey(KeyCode.Tab))
-        {
-            map.SetActive(true);
-        }
-        else
-        {
-            map.SetActive(false);
         }
     }
 }

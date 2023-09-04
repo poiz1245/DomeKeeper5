@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 
 public class M_Base : MonoBehaviour
@@ -9,9 +8,6 @@ public class M_Base : MonoBehaviour
     public Transform domeCenter { get; private set; }
 
     protected bool destroyed = false;
-
-    public float idleTimer;
-    public float currentHP;
 
     [Header("Stat")]
     public float HP = 1;
@@ -34,8 +30,7 @@ public class M_Base : MonoBehaviour
 
     protected virtual void Start()
     {
-        idleTimer = 0;
-        currentHP = HP;
+
     }
 
     protected virtual void Update()
@@ -56,31 +51,11 @@ public class M_Base : MonoBehaviour
         if (facingRight) faceX = 1;
         else faceX = -1;
 
-        #region hit상태 구현
-
-        if ( currentHP != HP)
-        {
-            currentHP = HP;
-            idleTimer = 0;
-            Debug.Log("hit");
-        }
-
-        if (idleTimer >= 1)
-        {
-            Debug.Log("idle");
-        }
-
-        #endregion
-
-        idleTimer += Time.deltaTime;
 
         if (HP <= 0)
         {
             Dead();
         }
-
-        
-       
 
     }
     public void Damage(float Atk)

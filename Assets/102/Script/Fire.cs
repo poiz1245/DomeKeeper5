@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] float Atk;
+    [SerializeField] public float Atk;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
