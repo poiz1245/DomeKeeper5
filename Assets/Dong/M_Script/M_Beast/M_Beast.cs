@@ -48,7 +48,7 @@ public class M_Beast : M_Moving
     {
         base.Start();
         stateMachine.Initiate(move);
-        currnetHP = HP;
+        currnetHP = HP1;
     }
 
     protected override void Update()
