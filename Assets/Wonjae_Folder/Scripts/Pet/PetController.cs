@@ -16,6 +16,11 @@ public class PetController : PetEntity
     protected override void Update()
     {
         base.Update();
+        OnMine();
+    }
+
+    public void OnMine()
+    {
 
         #region Mine
         if (isGrounded)
@@ -40,7 +45,7 @@ public class PetController : PetEntity
             petFly = true;
         }
 
-        if(isSideMineralDetected)
+        if (isSideMineralDetected)
         {
             MoveVelocity();
             petFly = false;
@@ -56,7 +61,7 @@ public class PetController : PetEntity
             underMine = true;
         }
 
-        if(!sideCheck && isGrounded)
+        if (!sideCheck && isGrounded)
         {
             ZeroVelocity();
             petFly = false;
@@ -64,7 +69,6 @@ public class PetController : PetEntity
             underMine = true;
         }
 
-        #endregion 
-
+        #endregion
     }
 }

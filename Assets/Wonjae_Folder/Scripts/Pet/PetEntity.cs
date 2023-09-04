@@ -7,40 +7,67 @@ using UnityEngine.UI;
 
 public class PetEntity : MonoBehaviour
 {
-    protected Rigidbody2D rbody;
-    protected Animator anim;
-    protected SpriteRenderer spr;
-
-    [Header("Pet Info")]
-    [Tooltip("펫의 정보를 나타냅니다.")]
+    [Header("펫 정보")]
+    [Tooltip("펫의 이동속도")]
     [SerializeField] protected float petSpeed;
+
+    [Tooltip("펫의 현재 공격력")]
     [SerializeField] private float petDamage;
+
+    [Tooltip("아랫방향 공격")]
+    [SerializeField] protected Transform footPos;
+
+    [Tooltip("정면 공격")]
+    [SerializeField] protected Transform toothPos;
+
+    [Header("보유한 광물의 수")]
     public float redjemScore = 0;
     public float greenjemScore = 0;
     public float bluejemScore = 0;
 
-
-    [Header("Collision Info")]
+    [Header("충돌 체크")]
+    [Tooltip("펫이 닿고있는 지면을 확인합니다.")]
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected private float groundCheckDistance;
+
+    [Tooltip("아랫 방향의 미네랄을 감지합니다.")]
     [SerializeField] protected Transform mineralUnderCheck;
     [SerializeField] protected float mineralCheckDistance;
-    [SerializeField] protected Transform wallCheck;
-    [SerializeField] protected float wallCheckDistance;
+
+    [Tooltip("바라보는 방향에 미네랄을 임의의 값만큼 감지합니다.")]
     [SerializeField] protected Transform sideMineralCheck;
     [SerializeField] protected float sideMineralCheckDistance;
+
+    [Tooltip("정면에 광물이 무엇인지 감지합니다.")]
     [SerializeField] protected Transform sideCheck;
     [SerializeField] protected float sideCheckDistance;
+
+    [Tooltip("펫 뒤에 미네랄이 있는지 감지합니다.")]
     [SerializeField] protected Transform backCheck;
     [SerializeField] protected float backCheckDistance;
+
+    [Tooltip("벽을 체크하여 방향전환을 결정합니다.")]
+    [SerializeField] protected Transform wallCheck;
+    [SerializeField] protected float wallCheckDistance;
+
+    [Header("레이어 체크")]
     [SerializeField] protected private LayerMask whatIsGround;
     [SerializeField] protected private LayerMask whatIsWall;
     [SerializeField] protected private LayerMask WhatIsMineral;
     [SerializeField] protected private LayerMask WhatIsSideTile;
-    [SerializeField] protected Transform footPos;
-    [SerializeField] protected Transform toothPos;
 
-    
+    //방향 전환
+    protected int facingDir = -1;
+    protected bool facingRight = true;
+    bool hardTileCheck;
+
+    //컴포넌트
+    protected Rigidbody2D rbody;
+    protected Animator anim;
+    protected SpriteRenderer spr;
+
+    //
+    S_Mineral mineral;
 
     #region anim bool
     protected bool isGrounded;
@@ -54,14 +81,9 @@ public class PetEntity : MonoBehaviour
     protected bool sideMine;
     protected bool petIdle;
     protected bool petFly;
-    protected bool hasFlipped;
+    protected bool hasFlipped = false;
     #endregion
 
-    protected int facingDir = -1;
-    protected bool facingRight = true;
-
-    S_Mineral mineral;
-    bool hardTileCheck;
 
     protected virtual void Start()
     {
@@ -92,16 +114,21 @@ public class PetEntity : MonoBehaviour
             Debug.Log("Flip");
             Flip();
         }
-        if (isBackDetected)
+        else if (isBackDetected)
         {
-            sideMine = true;
-            underMine = false;
-            petIdle = false;
-            petMove = false;
-            Flip();
-            Debug.Log("등 뒤 미네랄");
-            Invoke("Flip", 2.5f);
-            //return;
+            if (!hasFlipped)
+            {
+                sideMine = true;
+                underMine = false;
+                petIdle = false;
+                petMove = false;
+                Flip();
+                hasFlipped = true;
+            }
+        }
+        else
+        {
+            hasFlipped = false;
         }
     }
 
@@ -114,10 +141,12 @@ public class PetEntity : MonoBehaviour
         isGrounded = Physics2D.Raycast(groundCheck.position, new Vector2(0,0f -0.1f), groundCheckDistance, whatIsGround);
         isWallDetected = Physics2D.Raycast(wallCheck.position, Vector2.left, wallCheckDistance * -facingDir, whatIsWall);
 
-        isSideDetected = Physics2D.Raycast(sideCheck.position, new Vector2(-0.5f, 0.0f), sideCheckDistance * -facingDir, WhatIsSideTile);
         isMineraled = Physics2D.Raycast(mineralUnderCheck.position, Vector2.down, mineralCheckDistance, WhatIsMineral);
         isSideMineralDetected = Physics2D.Raycast(sideMineralCheck.position, new Vector2(-1.0f, 0.0f), sideMineralCheckDistance * -facingDir, WhatIsMineral);
+
         isBackDetected = Physics2D.Raycast(backCheck.position, Vector2.right,backCheckDistance * facingDir, WhatIsMineral);
+        isSideDetected = Physics2D.Raycast(sideCheck.position, new Vector2(-0.5f, 0.0f), sideCheckDistance * -facingDir, WhatIsSideTile);
+
     }
 
     protected virtual void OnDrawGizmos()
@@ -135,6 +164,7 @@ public class PetEntity : MonoBehaviour
         Gizmos.color = Color.black;
         Gizmos.DrawLine(backCheck.position, new Vector3(backCheck.position.x + backCheckDistance * -facingDir, backCheck.position.y));
     }
+
     #endregion
 
 
@@ -188,5 +218,34 @@ public class PetEntity : MonoBehaviour
     }
     #endregion
 
+
+    #region Pet Skill
+
+    public void PetDamage()
+    {
+
+    }
+
+    public void PetSearch()
+    {
+
+    }
+
+    public void PetInventory()
+    {
+
+    }
+
+    public void durationPet()
+    {
+
+    }
+
+    public void doublePet()
+    {
+
+    }
+
+    #endregion
 
 }

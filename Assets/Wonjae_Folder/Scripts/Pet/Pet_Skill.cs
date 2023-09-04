@@ -1,14 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-//Marker Skill Detail Info.
 public class Pet_Skill : MonoBehaviour
 {
-    public string skillName;
-    public Sprite skillSprite;
+    private Image sprite;
 
-    [TextArea(1, 3)]
-    public string skillDes;
-    public bool isUpgrade;
+    [SerializeField]
+    private Text countText;
+
+    private void Awake()
+    {
+        sprite = GetComponent<Image>();
+    }
+
+    public void Lock()
+    {
+        sprite.color = Color.gray; 
+        countText.color = Color.gray;
+    }
+
+    public void Unlock()
+    {
+        sprite.color = Color.white;
+        countText.color = Color.white; 
+    }
+
 }

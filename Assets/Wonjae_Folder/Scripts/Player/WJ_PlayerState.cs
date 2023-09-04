@@ -11,11 +11,7 @@ public class WJ_PlayerState
     protected Rigidbody2D rbody;
     protected SpriteRenderer spriteRender;
 
-    protected float xInput;
-    protected float yInput;
     private string animBoolName;
-
-    protected float stateTimer;
 
 
     public WJ_PlayerState(WJ_Player _player, WJ_PlayerStateMachine _stateMachine, string _animBoolName)
@@ -29,14 +25,10 @@ public class WJ_PlayerState
     {
         player.anim.SetBool(animBoolName, true);
         rbody = player.rbody;
-        //spriteRender = player.spriteRender;
+        spriteRender = player.spriteRender;
     }
     public virtual void Update()
     {
-        stateTimer -= Time.deltaTime;
-
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //player.anim.SetFloat("yVelocity", rbody.velocity.y);
 

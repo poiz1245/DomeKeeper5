@@ -1,7 +1,4 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class M_GameManager : MonoBehaviour
 {
@@ -28,23 +25,12 @@ public class M_GameManager : MonoBehaviour
     string mFlyer = "Flyer";
 
     public float x = 0;
-    int y;
-
-    public float waveTime;
-    public float waveTimer;
-    public int wave = 1;
-    public float waveSpawnTime;
-    public float spawnDuration; 
-        
-
-    public bool spawnMonster = false;
-
-    public Slider slider;
 
     private void Start()
     {
         int monsterCount = CountWithTag(monsterTag);
         Debug.Log(" 몬스터 숫자 : " + monsterCount);
+<<<<<<< HEAD
 
         waveTime = 10 + wave * 5;
         waveTimer = waveTime;
@@ -53,14 +39,18 @@ public class M_GameManager : MonoBehaviour
 
         Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver); Make(mDiver);
 
+=======
+        
+>>>>>>> 3c877c4b82534b0524d13982333ecd1c28fe9e5b
     }
 
     private void Update()
     {
-        slider.value = waveTimer / waveTime;
-        y = wave;
-        if( wave > 6)
+        x += Time.deltaTime;
+
+        if(x > 2)
         {
+<<<<<<< HEAD
             y = 6;
         }
 
@@ -88,8 +78,24 @@ public class M_GameManager : MonoBehaviour
                 int monsterCount = CountWithTag(monsterTag);
                 Debug.Log(" 몬스터 숫자 : " + monsterCount);
             }
+=======
+            Make(mBolter);
+            Make(mDriller);
+            Make(mDiver);
+            Make(mTicker);
+            Make(mWorm);
+            Make(mShifter);
+            Make(mBeast);
+            Make(mFlyer);
 
+            x = 0;
+
+>>>>>>> 3c877c4b82534b0524d13982333ecd1c28fe9e5b
+
+            int monsterCount = CountWithTag(monsterTag);
+            //Debug.Log(" 몬스터 숫자 : " + monsterCount);
         }
+<<<<<<< HEAD
 
         #endregion
 
@@ -138,11 +144,9 @@ public class M_GameManager : MonoBehaviour
         }
 
         #endregion
+=======
+>>>>>>> 3c877c4b82534b0524d13982333ecd1c28fe9e5b
     }
-
-
-
-
 
     private int CountWithTag(string tag)
     {
