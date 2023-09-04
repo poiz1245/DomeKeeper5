@@ -65,12 +65,12 @@ public class WJ_Player : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             drill.SetActive(true);
-            anim.SetBool("dig", true);
+            anim.SetBool("Dig", true);
         }
         if (!Input.GetMouseButton(0))
         {
             drill.SetActive(false);
-            anim.SetBool("dig", false);
+            anim.SetBool("Dig", false);
         }
 
     }

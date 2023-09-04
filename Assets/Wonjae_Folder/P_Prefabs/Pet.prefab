@@ -101,7 +101,7 @@ Transform:
   - {fileID: 4939101024197258598}
   - {fileID: 8983549880669369456}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9103345212335302220
 MonoBehaviour:
@@ -117,6 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   petSpeed: 2
   petDamage: 10
+  footPos: {fileID: 1414214155786455657}
+  toothPos: {fileID: 7061716428815760171}
   redjemScore: 0
   greenjemScore: 0
   bluejemScore: 0
@@ -124,14 +126,14 @@ MonoBehaviour:
   groundCheckDistance: 0.18
   mineralUnderCheck: {fileID: 7677812303816594371}
   mineralCheckDistance: 0.25
-  wallCheck: {fileID: 1844269151752789375}
-  wallCheckDistance: 0.8
   sideMineralCheck: {fileID: 4520116920742061950}
   sideMineralCheckDistance: 5
   sideCheck: {fileID: 3007355970334412507}
   sideCheckDistance: 0.05
   backCheck: {fileID: 711510593784854159}
   backCheckDistance: 1
+  wallCheck: {fileID: 1844269151752789375}
+  wallCheckDistance: 0.8
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -144,8 +146,6 @@ MonoBehaviour:
   WhatIsSideTile:
     serializedVersion: 2
     m_Bits: 64
-  footPos: {fileID: 1414214155786455657}
-  toothPos: {fileID: 7061716428815760171}
 --- !u!95 &1099182522928215136
 Animator:
   serializedVersion: 5
@@ -205,9 +205,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingLayerID: -1390057483
+  m_SortingLayer: 3
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bfe9d19bf6a405d44b98a3ba62a668b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
