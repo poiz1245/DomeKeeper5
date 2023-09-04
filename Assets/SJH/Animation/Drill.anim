@@ -35,6 +35,20 @@ AnimationClip:
     - time: 0.4
       value: {fileID: -897886254, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
     - time: 0.46666667
+      value: {fileID: -617563975, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - time: 0.53333336
+      value: {fileID: -289052248, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - time: 0.6
+      value: {fileID: 405152412, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - time: 0.6666667
+      value: {fileID: 578895458, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - time: 0.73333335
+      value: {fileID: -1623777037, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - time: 0.8
+      value: {fileID: 279068360, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - time: 0.8666667
+      value: {fileID: -897886254, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - time: 0.93333334
       value: {fileID: -205560746, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
     attribute: m_Sprite
     path: 
@@ -65,13 +79,20 @@ AnimationClip:
     - {fileID: -1623777037, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
     - {fileID: 279068360, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
     - {fileID: -897886254, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - {fileID: -617563975, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - {fileID: -289052248, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - {fileID: 405152412, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - {fileID: 578895458, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - {fileID: -1623777037, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - {fileID: 279068360, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
+    - {fileID: -897886254, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
     - {fileID: -205560746, guid: 67addfd6d00cee749bc305aa3cab6d5f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.53333336
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -91,7 +112,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.46666667
+  - time: 0.93333334
     functionName: Dig
     data: 
     objectReferenceParameter: {fileID: 0}

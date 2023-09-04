@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class WJ_Player : MonoBehaviour
 {
+    public GameObject drill;
+    public int facingDir { get; private set; } = 1;
+    bool facingRight = true;
+    public float layerChangeTime;
+    public float layerChangeDelay = 1;
+
     [Header("Move Info")]
     public float Speed = 3f;
     public float jumpForce = 5f;
 
+    [Header("Collision Info")]
+    [SerializeField] Transform groundCheck;
+    [SerializeField] float groundCheckDistance;
+    [SerializeField] LayerMask whatIsGround;
+
+    [Header("Score Info")]
     public float redjemScore = 0;
     public float greenjemScore = 0;
     public float bluejemScore = 0;
 
-    public float xInput;
-    public float yInput;
-
-    public GameObject drill;
-
     #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D rbody { get; private set; }
-    public SpriteRenderer spriteRender { get; private set; }
+    //public SpriteRenderer spriteRender { get; private set; }
     #endregion
 
     #region States
-    public WJ_PlayerStateMachine stateMachine {  get; private set; }
+    public WJ_PlayerStateMachine stateMachine { get; private set; }
     public WJ_PlayerIdleState idleState { get; private set; }
     public WJ_PlayerMoveState moveState { get; private set; }
     public WJ_PlayerUpState upState { get; private set; }
@@ -46,47 +53,59 @@ public class WJ_Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
-        spriteRender = GetComponent<SpriteRenderer>();
         stateMachine.Initialize(idleState);
-        drill.SetActive(false);
     }
 
     void Update()
     {
         stateMachine.currentState.Update();
 
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
+        LayerChangeControll();
 
         if (Input.GetMouseButton(0))
         {
-            stateMachine.ChangeState(digState);
+            drill.SetActive(true);
+            anim.SetBool("Dig", true);
         }
-        else
+        if (!Input.GetMouseButton(0))
         {
-            stateMachine.ChangeState(idleState);
+            drill.SetActive(false);
+            anim.SetBool("Dig", false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            stateMachine.ChangeState(upState);
-        }
     }
 
+
+    void LayerChangeControll() => layerChangeTime -= Time.deltaTime;
+
+    public bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
-        rbody.velocity  = new Vector2(_xVelocity, _yVelocity);
+        rbody.velocity = new Vector2(_xVelocity, _yVelocity);
+        FlipController(_xVelocity);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x,
+            groundCheck.position.y - groundCheckDistance));
+
+    }
     public void Flip()
     {
-        if (rbody.velocity.x > 0)
+        facingDir = facingDir * -1;
+        facingRight = !facingRight;
+        transform.Rotate(0, 180, 0);
+    }
+    public void FlipController(float _x)
+    {
+        if (_x > 0 && facingRight)
         {
-            spriteRender.flipX = true;
+            Flip();
         }
-        else
+        else if (_x < 0 && !facingRight)
         {
-            spriteRender.flipX = false;
+            Flip();
         }
     }
 }

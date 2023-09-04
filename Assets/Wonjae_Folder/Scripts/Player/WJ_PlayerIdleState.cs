@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WJ_PlayerIdleState : WJ_PlayerState
+public class WJ_PlayerIdleState : WJ_PlayerGroundState
 {
     public WJ_PlayerIdleState(WJ_Player _player, WJ_PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -17,14 +17,9 @@ public class WJ_PlayerIdleState : WJ_PlayerState
     {
         base.Update();
 
-        if (player.xInput != 0)
+        if (xInput != 0)
         {
-            stateMachine.ChangeState(player.moveState);
-        }
-
-        if(player.yInput != 0)
-        {
-            stateMachine.ChangeState(player.downState);
+            player.stateMachine.ChangeState(player.moveState);
         }
     }
 

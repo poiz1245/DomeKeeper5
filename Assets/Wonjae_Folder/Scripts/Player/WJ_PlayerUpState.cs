@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WJ_PlayerUpState : WJ_PlayerMineState
+public class WJ_PlayerUpState : WJ_PlayerState
 {
     public WJ_PlayerUpState(WJ_Player _player, WJ_PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -11,13 +11,19 @@ public class WJ_PlayerUpState : WJ_PlayerMineState
     public override void Enter()
     {
         base.Enter();
-        rbody.velocity = new Vector2(rbody.velocity.x, player.jumpForce);
     }
 
     public override void Update()
     {
         base.Update();
-        stateMachine.ChangeState(player.idleState);
+
+        rbody.velocity = new Vector2(rbody.velocity.x, player.jumpForce);
+
+        if (xInput != 0)
+            player.SetVelocity(player.Speed * 0.8f * xInput, rbody.velocity.y);
+
+        if (!Input.GetKey(KeyCode.Space))
+            stateMachine.ChangeState(player.idleState);
     }
 
     public override void Exit()
