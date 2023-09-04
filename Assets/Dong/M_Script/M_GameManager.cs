@@ -64,15 +64,6 @@ public class M_GameManager : MonoBehaviour
         if (spawnMonster)
         {
             
-            switch (wave)
-            {
-                case 6:
-                case 4:
-                case 3:
-                case 2:
-                case 1:
-                    break;
-            }
 
 
             Make(mBolter);
